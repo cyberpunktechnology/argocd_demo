@@ -1,0 +1,19 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: podinfo-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/cyberpunktechnology/argocd_demo.git
+    targetRevision: demo
+    path: kustomize/k3s
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dev-test1
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
