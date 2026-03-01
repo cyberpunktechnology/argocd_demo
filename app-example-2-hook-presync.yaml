@@ -11,10 +11,10 @@ spec:
   source:
     repoURL: https://github.com/cyberpunktechnology/argocd_demo.git
     targetRevision: demo
-    path: kustomize/k3s-example-1
+    path: kustomize/k3s-example-2-job-presync
   destination:
     server: https://kubernetes.default.svc
-    namespace: dev-test1
+    namespace: dev-test-presync
   syncPolicy:
     automated:
       prune: true
