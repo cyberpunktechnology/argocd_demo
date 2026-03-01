@@ -19,6 +19,6 @@ spec:
               echo "Job PreSync démarré..."
               for i in $(seq 1 10); do
                 echo "Compteur $i"
-                sleep 1
+                sleep 3
               done
               echo "Job PreSync terminé !"

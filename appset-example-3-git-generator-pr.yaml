@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: podinfo-branches
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - pullRequest:
+      github:
+        owner: cyberpunktechnology
+        repo: argocd_demo
+        api: https://api.github.com/
+        tokenRef:
+          secretName: github-creds
+          key: token
+        labels:
+        - preview
+      requeueAfterSeconds: 1800
+  template:
+    metadata:
+      name: podinfo-{{.branch}}
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/cyberpunktechnology/argocd_demo.git
+        targetRevision: '{{.branch}}'
+        path: kustomize/k3s-simple
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{.branch}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

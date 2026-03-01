@@ -110,6 +110,8 @@ ARGO_ADMIN_PASS=$(kubectl get secret argocd-initial-admin-secret  -n argocd -o j
 argocd login --insecure argocd.local:30080 --grpc-web --username admin --password "${ARGO_ADMIN_PASS}"
 ```
 
+Note : l'authentification expire régulièrement
+
 Ajouter le repo Github : 
 
 ```bash
@@ -124,7 +126,24 @@ argocd repo add git@github.com:cyberpunktechnology/argocd_demo.git --ssh-private
 # vérifier via
 argocd repo list
 ```
+## Demonstration
 
+### Simple app
+
+### Hook Presync
+
+### Git generators
+
+Nous avons besoin de créer un secret pour s'authentifier sur l'API de Github, il faut un PAT avec les droits : 
+
+* repo:status
+* public:repo
+* read:project
+
+```bash
+kubectl create secret generic github-creds -n argocd --from-literal=token=$(echo ${GITHUB_ARGOCD_TOKEN})
+kubectl label secret github-creds -n argocd argocd.argoproj.io/secret-type=scm-creds
+```
 
 ## Documentations externes
 
