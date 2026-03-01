@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/cyberpunktechnology/argocd_demo.git
     targetRevision: demo
-    path: kustomize/k3s-example-2-job-presync
+    path: kustomize/k3s-simple-presync
   destination:
     server: https://kubernetes.default.svc
     namespace: dev-test-presync
