@@ -3,6 +3,7 @@ kind: Kustomization
 # namespace: dev
 resources:
   - ../base
+  - job-presync.yaml
 
 images:
   - name: ghcr.io/stefanprodan/podinfo
