@@ -128,11 +128,11 @@ argocd repo list
 ```
 ## Demonstration
 
-### Simple app
+### Demo - Simple app
 
-### Hook Presync
+### Demo - Hook Presync
 
-### Git generators
+### Demo - Appset & Git generators
 
 Nous avons besoin de créer un secret pour s'authentifier sur l'API de Github, il faut un PAT avec les droits : 
 
@@ -143,6 +143,20 @@ Nous avons besoin de créer un secret pour s'authentifier sur l'API de Github, i
 ```bash
 kubectl create secret generic github-creds -n argocd --from-literal=token=$(echo ${GITHUB_ARGOCD_TOKEN})
 kubectl label secret github-creds -n argocd argocd.argoproj.io/secret-type=scm-creds
+```
+
+Pour valider que l'appset est fonctionnel : 
+
+```bash
+argocd appset generate appset-example-3-git-generator-pr.yaml
+```
+
+### Demo - Appset + argo-rollouts (Canary mode)
+
+Installer Argo-rollouts
+
+```bash
+helm install argo-rollouts argo/argo-rollouts --namespace argocd
 ```
 
 ## Documentations externes

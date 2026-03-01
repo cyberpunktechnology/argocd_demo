@@ -17,7 +17,7 @@ spec:
           key: token
         labels:
         - preview
-      requeueAfterSeconds: 1800
+      requeueAfterSeconds: 30
   template:
     metadata:
       name: podinfo-{{.branch}}
