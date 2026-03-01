@@ -4,12 +4,14 @@ kind: Application
 metadata:
   name: podinfo-dev
   namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io/foreground
 spec:
   project: default
   source:
     repoURL: https://github.com/cyberpunktechnology/argocd_demo.git
     targetRevision: demo
-    path: kustomize/k3s
+    path: kustomize/k3s-example-1
   destination:
     server: https://kubernetes.default.svc
     namespace: dev-test1
