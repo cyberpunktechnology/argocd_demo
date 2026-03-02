@@ -159,6 +159,12 @@ Installer Argo-rollouts
 helm install argo-rollouts argo/argo-rollouts --namespace argocd
 ```
 
+tester : 
+
+```bash
+kubectl apply -f app-example-4-rollout.yaml
+```
+
 ## Documentations externes
 
 Nginx ingress controller : 
