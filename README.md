@@ -35,7 +35,7 @@ colima start --profile argocd --kubernetes --k3s-arg='"--disable=metrics-server,
 #### Déclarer les hosts internes pour tester dans votre navigateur
 
 ```bash
-echo "127.0.0.1 demo.local argocd.local podinfo.local canary.local"|tee -a /etc/hosts
+echo "127.0.0.1 demo.local argocd.local podinfo.dev.local rollouts-demo.local rollouts-demo-10.local"|tee -a /etc/hosts
 ```
 
 #### Install de l'ingress Nginx

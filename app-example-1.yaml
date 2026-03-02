@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/cyberpunktechnology/argocd_demo.git
-    targetRevision: demo
+    targetRevision: main
     path: kustomize/k3s-simple
   destination:
     server: https://kubernetes.default.svc
