@@ -1,0 +1,23 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: podinfo-dev
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io/foreground # permet de delete l'app si elle est supprimé d'ArgoCD
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/cyberpunktechnology/argocd_demo.git
+    targetRevision: main
+    path: kustomize/k3s-simple-presync
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dev-test-presync
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

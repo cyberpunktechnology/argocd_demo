@@ -1,0 +1,24 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pre-sync-job
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: pre-sync
+          image: busybox
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              echo "Job PreSync démarré..."
+              for i in $(seq 1 10); do
+                echo "Compteur $i"
+                sleep 3
+              done
+              echo "Job PreSync terminé !"
