@@ -20,16 +20,16 @@ spec:
       requeueAfterSeconds: 30
   template:
     metadata:
-      name: podinfo-{{.branch}}
+      name: podinfo-{{.branch_slug}}
     spec:
       project: default
       source:
         repoURL: https://github.com/cyberpunktechnology/argocd_demo.git
-        targetRevision: '{{.branch}}'
+        targetRevision: '{{.branch_slug}}'
         path: kustomize/k3s-simple
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{.branch}}'
+        namespace: '{{.branch_slug}}'
       syncPolicy:
         automated:
           prune: true
